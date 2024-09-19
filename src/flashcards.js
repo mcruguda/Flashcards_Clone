@@ -25,12 +25,14 @@ function viewFlashcards(
                 {
                   onclick: () =>
                     dispatch(messages.EDIT_FLASHCARD, flashcard.id),
+                  attributes: { "data-testid": "edit-flashcard" },
                 },
                 "✒️"
               ),
           button(
             {
               onclick: () => dispatch(messages.DELETE_FLASHCARD, flashcard.id),
+              attributes: { "data-testid": "delete-flashcard" },
             },
             "🗑️"
           ),
@@ -39,6 +41,7 @@ function viewFlashcards(
       flashcard.id === editingFlashcard
         ? textarea({
             className: "w-full mb-2 p-2 border rounded bg-slate-50 text-lg",
+            attributes: { "data-testid": "edit-flashcard-question" },
             value: editableFlashcard.question,
             oninput: (e) =>
               dispatch(messages.UPDATE_EDITABLE_QUESTION, e.target.value),
@@ -47,6 +50,7 @@ function viewFlashcards(
       flashcard.id === editingFlashcard
         ? textarea({
             className: "w-full p-2 border rounded bg-slate-50 text-lg",
+            attributes: { "data-testid": "edit-flashcard-answer" },
             value: editableFlashcard.answer,
             oninput: (e) =>
               dispatch(messages.UPDATE_EDITABLE_ANSWER, e.target.value),
@@ -56,6 +60,7 @@ function viewFlashcards(
         ? button(
             {
               className: "underline cursor-pointer mt-2",
+              attributes: { "data-testid": "toggle-flashcard-answer" },
               onclick: () => dispatch(messages.TOGGLE_ANSWER, flashcard.id),
             },
             flashcard.showAnswer ? "Hide answer" : "Show answer"
@@ -109,6 +114,7 @@ function viewFlashcards(
         ? button(
             {
               className: "bg-blue-500 text-white px-4 py-2 rounded mt-2",
+              attributes: { "data-testid": "save-edited-flashcard" },
               onclick: () => dispatch(messages.SAVE_EDITED_FLASHCARD),
             },
             "Save"
